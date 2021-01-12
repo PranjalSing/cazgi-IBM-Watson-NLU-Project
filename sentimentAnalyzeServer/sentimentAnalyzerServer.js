@@ -124,6 +124,7 @@ app.get("/text/sentiment", (req,res) => {
  
  naturalLanguageUnderstanding.analyze(analyzeParams)
  .then(analysisResults => {
+   
  console.log(JSON.stringify(analysisResults.result.entities[0].sentiment,null,2));
  return res.send(analysisResults.result.entities[0].sentiment,null,2);
  })
