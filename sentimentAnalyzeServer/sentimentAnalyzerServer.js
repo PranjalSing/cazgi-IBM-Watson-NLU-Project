@@ -7,7 +7,7 @@ app.use(cors_app());
  
 
 const dotenv = require('dotenv');
-const { request } = require('express');
+const { request, response } = require('express');
  dotenv.config();
 const api_key = process.env.API_KEY;
 const api_url = process.env.API_URL;
@@ -79,6 +79,7 @@ app.get("/url/sentiment", (req,res) => {
  .then(analysisResults => {
    console.log(analysisResults.result.entities[0].sentiment.label);
  console.log(JSON.stringify(analysisResults.result.entities[0].sentiment,null,2));
+ return res.send(analysisResults.result.entities[0].sentiment.label);
  return res.send(analysisResults.result.entities[0].sentiment,null,2);
  })
  .catch(err => {
